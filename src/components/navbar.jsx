@@ -2,14 +2,19 @@ import { Link } from "react-router";
 import styled from "styled-components";
 
 const Bar = styled.div`
-    padding: 10px;
+    padding: 20px 30px 20px 30px;
     display: flex;
+    align-items: baseline;
     gap: 20px;
+
+    background-color: rgba(247, 247, 247, 1);
+    
+;
 `
 
 const BaseLink = styled(Link)`
     text-decoration: none;
-    color: black;
+    color: rgba(40, 40, 40, 1);
 `
 
 const HomeLink = styled(BaseLink)`
@@ -23,11 +28,13 @@ const OtherLink = styled(BaseLink)`
 
 export default function NavBar() {
     return (
-        <Bar>
-            <HomeLink to="/">Fake Shop</HomeLink>
-            <OtherLink to="shop">Shop</OtherLink>
-            <OtherLink to="cart">Cart</OtherLink>
-        </Bar>
+        <>
+            <Bar>
+                <HomeLink to="/">Fake Shop</HomeLink>
+                <OtherLink to="/shop">Shop</OtherLink>
+                <OtherLink to="/cart">Cart</OtherLink>
+            </Bar>
+        </>
     )
 
 
