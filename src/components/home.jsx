@@ -10,6 +10,8 @@ const Page = styled.div`
 
 const Welcome = styled.h1`
     font-weight: bold;
+    position: relative;
+    top: -80px;
 `
 
 export default function Home() {
