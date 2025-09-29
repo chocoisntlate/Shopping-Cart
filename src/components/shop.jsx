@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import NavBar from "./navbar";
 import styled from "styled-components";
+import ItemBar from "./item-bar";
 
 const StyledGrid = styled.div`
     display: grid;
@@ -27,6 +28,12 @@ const GridContainer = styled.div`
     display: flex;
     justify-content: center;
     padding: 20px;
+`
+
+const StyledTitle = styled.p`
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 `
 
 export default function Shop() {
@@ -68,7 +75,8 @@ export default function Shop() {
                         return (
                             <StyledGridItem>
                                 <StyledImg src={product.image}></StyledImg>
-                                <p>{product.title}</p>
+                                <StyledTitle>{product.title}</StyledTitle>
+                                <ItemBar productTitle={product.title}/>
                             </StyledGridItem>
                         )
                     })}
