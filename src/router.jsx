@@ -7,15 +7,11 @@ import Cart from "./components/cart";
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Home/>
-    },
-    {
-        path: "/shop",
-        element: <Shop/>
-    },
-    {
-        path: "/cart",
-        element: <Cart/>
+        element: <Home/>,
+        children: [
+            {path: "/shop", element: <Shop/>} ,
+            {path: "/cart", element: <Cart/>}
+        ]
     }
 ])
 

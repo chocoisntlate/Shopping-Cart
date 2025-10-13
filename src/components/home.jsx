@@ -1,3 +1,4 @@
+import { useOutlet } from "react-router";
 import NavBar from "./navbar";
 import styled from "styled-components";
 
@@ -15,12 +16,17 @@ const Welcome = styled.h1`
 `
 
 export default function Home() {
+    const outlet = useOutlet()
+
     return (
         <>
             <NavBar></NavBar>
-            <Page>
-                <Welcome>Welcome to the fake store!</Welcome>
-            </Page>
+            {outlet ? outlet : (
+                <Page>
+                    <Welcome>Welcome to the fake store!</Welcome>
+                </Page>
+            ) }
+  
         </>
     )
 }
