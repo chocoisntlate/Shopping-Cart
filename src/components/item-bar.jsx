@@ -1,6 +1,7 @@
 
 import styled from "styled-components";
 import { useState } from "react";
+import { useOutletContext } from "react-router";
 
 const Bar = styled.div`
     display: flex;
@@ -42,6 +43,7 @@ const NumOfItemsInputField = styled.input`
 
 export default function ItemBar({productTitle}) {
     const [productCount, setProductCount] = useState(1)
+    const {addToCart} = useOutletContext()
 
     const handleInputChange = (e) => {
         const value = parseInt(e.target.value)
@@ -70,7 +72,7 @@ export default function ItemBar({productTitle}) {
                     />
                 <NumOfItemsControlButton onClick={incrementProductCount}>+</NumOfItemsControlButton>
             </ItemsRelatedButtons>
-            <AddToCartButton>Add To Cart</AddToCartButton>
+            <AddToCartButton onClick={() => {addToCart(productTitle, productCount)}}>Add To Cart</AddToCartButton>
         </Bar>
     )
 }
