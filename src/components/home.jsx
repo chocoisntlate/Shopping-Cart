@@ -16,26 +16,34 @@ const Welcome = styled.h1`
     top: -80px;
 `
 
+class Item {
+    constructor(name, count) {
+        this.name = name
+        this.count = count
+    }
+}
+
 export default function Home() {
-    const [itemsMap, setItemsMap] = useState(new Map())
+    const [itemsList, setItemsList] = useState([])
     const location = useLocation()
 
     const hasChildRoute = location.pathname !== "/";
 
     const addToCart = (itemToAdd, count) => {
-        if (itemsMap.has(itemToAdd)) {
-            itemsMap.set(itemToAdd, itemsMap.get(itemToAdd) + count)
+        const index = itemsList.findIndex(item => item.name == itemToAdd)
+
+        if (index == -1) {
+            setItemsList(prev => [...prev, new Item(itemToAdd, count)])
         } else {
-            itemsMap.set(itemToAdd, count)
+            setItemsList(prev => prev.map((item, i) => i === index ? new Item(item.name, item.count + count) : item))
         }
-        console.log(itemsMap);
-        setItemsMap(new Map(itemsMap))
     }
+
 
     return (
         <>
             <NavBar></NavBar>
-            {hasChildRoute ? (<Outlet context={{addToCart}} />) : 
+            {hasChildRoute ? (<Outlet context={{addToCart, itemsList}} />) : 
                 (
                 <Page>
                     <Welcome>Welcome to the fake store!</Welcome>
