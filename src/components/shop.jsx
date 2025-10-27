@@ -75,7 +75,7 @@ export default function Shop() {
                             <StyledGridItem key={product.id}>
                                 <StyledImg src={product.image}></StyledImg>
                                 <StyledTitle>{product.title}</StyledTitle>
-                                <ItemBar productTitle={product.title}/>
+                                <ItemBar productTitle={product.title} productImage={product.image}/>
                             </StyledGridItem>
                         )
                     })}

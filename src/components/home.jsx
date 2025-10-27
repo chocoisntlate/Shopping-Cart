@@ -17,9 +17,10 @@ const Welcome = styled.h1`
 `
 
 class Item {
-    constructor(name, count) {
+    constructor(name, count, img) {
         this.name = name
         this.count = count
+        this.img = img
     }
 }
 
@@ -29,21 +30,44 @@ export default function Home() {
 
     const hasChildRoute = location.pathname !== "/";
 
-    const addToCart = (itemToAdd, count) => {
+    const addToCart = (itemToAdd, count, productImage) => {
         const index = itemsList.findIndex(item => item.name == itemToAdd)
 
         if (index == -1) {
-            setItemsList(prev => [...prev, new Item(itemToAdd, count)])
+            setItemsList(prev => [...prev, new Item(itemToAdd, count, productImage)])
         } else {
-            setItemsList(prev => prev.map((item, i) => i === index ? new Item(item.name, item.count + count) : item))
+            setItemsList(prev => prev.map((item, i) => i === index ? new Item(item.name, item.count + count, productImage) : item))
         }
+    }
+
+
+    const incrementItem = (itemName, productImage) => { // not the best way to store product images.
+        const index = itemsList.findIndex(item => item.name == itemName)
+
+        setItemsList(prev => prev.map((item, i) => i === index ? new Item(item.name, item.count + 1, productImage) : item))
+    }
+
+    const decrementItem = (itemName, productImage) => { // not the best way to store product images.
+        const index = itemsList.findIndex(item => item.name == itemName)
+
+        if (itemsList[index].count <= 1) {
+            removeItem(itemName)
+        } else {
+            setItemsList(prev => prev.map((item, i) => i === index ? new Item(item.name, item.count - 1, productImage) : item))
+
+        }
+
+    }
+
+    const removeItem = (itemName) => {
+        setItemsList(prev => prev.filter(item => item.name !== itemName));
     }
 
 
     return (
         <>
             <NavBar></NavBar>
-            {hasChildRoute ? (<Outlet context={{addToCart, itemsList}} />) : 
+            {hasChildRoute ? (<Outlet context={{addToCart, itemsList, incrementItem, decrementItem, removeItem}} />) : 
                 (
                 <Page>
                     <Welcome>Welcome to the fake store!</Welcome>

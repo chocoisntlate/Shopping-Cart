@@ -41,7 +41,7 @@ const NumOfItemsInputField = styled.input`
 
 `
 
-export default function ItemBar({productTitle}) {
+export default function ItemBar({productTitle, productImage}) {
     const [productCount, setProductCount] = useState(1)
     const {addToCart} = useOutletContext()
 
@@ -72,7 +72,7 @@ export default function ItemBar({productTitle}) {
                     />
                 <NumOfItemsControlButton onClick={incrementProductCount}>+</NumOfItemsControlButton>
             </ItemsRelatedButtons>
-            <AddToCartButton onClick={() => {addToCart(productTitle, productCount)}}>Add To Cart</AddToCartButton>
+            <AddToCartButton onClick={() => {addToCart(productTitle, productCount, productImage)}}>Add To Cart</AddToCartButton>
         </Bar>
     )
 }
