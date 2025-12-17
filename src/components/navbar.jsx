@@ -8,6 +8,7 @@ const Bar = styled.div`
     gap: 20px;
 
     background-color: rgba(247, 247, 247, 1);
+    margin-bottom: 50px;
     
 ;
 `

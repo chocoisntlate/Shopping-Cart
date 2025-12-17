@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import NavBar from "./navbar";
 import styled from "styled-components";
 import ItemBar from "./item-bar";
 
@@ -30,7 +29,6 @@ export const StyledImg = styled.img`
 const GridContainer = styled.div`
     display: flex;
     justify-content: center;
-    padding: 30px;
     box-sizing: border-box;
 `
 

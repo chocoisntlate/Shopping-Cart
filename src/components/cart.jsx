@@ -3,7 +3,7 @@ import { useOutletContext } from "react-router";
 import { StyledImg } from "./shop";
 import { StyledPrice } from "./shop";
 
-const StyledText = styled.h1`
+export const StyledText = styled.h1`
 
 `
 
@@ -84,7 +84,7 @@ align-items: center;
 
 const EmptyCart = styled.div`
     font-size: 1.2rem;
-    padding: 100px;
+    margin-bottom: 50px;
 
 `
 
@@ -136,7 +136,6 @@ export default function Cart() {
 
     return (
         <CartDisplay>
-            <StyledText>Shopping Cart</StyledText>
             <ItemsList>
                 {itemsList.length > 0 ? itemsList.map((item) => {
                     return (
