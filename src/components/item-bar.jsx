@@ -8,6 +8,7 @@ const Bar = styled.div`
     flex-direction: column;
     justify-content: center;
     padding: 5px;
+    width: 100%;
 `
 
 const ItemsRelatedButtons = styled.div`
@@ -18,30 +19,31 @@ const ItemsRelatedButtons = styled.div`
     gap: 10px;
 `
 
-const ButtonStyle = styled.button`
-    border-radius: 10px;
+export const ButtonStyle = styled.button`
+    border-radius: 5px;
     border-style: none;
 `
 
 const AddToCartButton = styled(ButtonStyle)`
     padding: 10px;
+    color: #171717ff;
     
 `
 
 const NumOfItemsControlButton = styled(ButtonStyle)`
     padding: 8px;
     border-radius: 5px;
-    width: 80px;
+    width: 40px;
     font-size: 1.05rem;
 `
 
 const NumOfItemsInputField = styled.input`
     text-align: center;
-    flex: 1;
+    width: 100px;
 
 `
 
-export default function ItemBar({productTitle, productImage}) {
+export default function ItemBar({productPrice, productTitle, productImage}) {
     const [productCount, setProductCount] = useState(1)
     const {addToCart} = useOutletContext()
 
@@ -72,7 +74,7 @@ export default function ItemBar({productTitle, productImage}) {
                     />
                 <NumOfItemsControlButton onClick={incrementProductCount}>+</NumOfItemsControlButton>
             </ItemsRelatedButtons>
-            <AddToCartButton onClick={() => {addToCart(productTitle, productCount, productImage)}}>Add To Cart</AddToCartButton>
+            <AddToCartButton onClick={() => {addToCart(productTitle, productCount, productImage, productPrice)}}>Add To Cart</AddToCartButton>
         </Bar>
     )
 }

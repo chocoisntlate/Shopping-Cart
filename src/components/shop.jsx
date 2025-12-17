@@ -5,19 +5,22 @@ import ItemBar from "./item-bar";
 
 const StyledGrid = styled.div`
     display: grid;
-    width: 100%;
-    grid-template-columns: repeat(auto-fit, 300px);
+    width: 80%;
+    grid-template-columns: repeat(auto-fit, minmax(0, 200px));
     gap: 10px;
     place-content: center;
 `;
 const StyledGridItem = styled.div`
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-width: 0;
     
 `;
     
 
-const StyledImg = styled.img`
+export const StyledImg = styled.img`
     object-fit: scale-down;
     width: 100%;
     aspect-ratio: 1 / 1;
@@ -27,13 +30,22 @@ const StyledImg = styled.img`
 const GridContainer = styled.div`
     display: flex;
     justify-content: center;
-    padding: 20px;
+    padding: 30px;
+    box-sizing: border-box;
 `
 
 const StyledTitle = styled.p`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    overflow-wrap: break-word;
+    max-width: 100%;
+`
+
+export const StyledPrice = styled.p`
+    font-size: 1.2rem;
+    color: rgba(20, 68, 30, 1);
+
 `
 
 export default function Shop() {
@@ -75,7 +87,8 @@ export default function Shop() {
                             <StyledGridItem key={product.id}>
                                 <StyledImg src={product.image}></StyledImg>
                                 <StyledTitle>{product.title}</StyledTitle>
-                                <ItemBar productTitle={product.title} productImage={product.image}/>
+                                <StyledPrice>${product.price}</StyledPrice>
+                                <ItemBar productPrice={product.price} productTitle={product.title} productImage={product.image}/>
                             </StyledGridItem>
                         )
                     })}
